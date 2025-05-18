@@ -97,7 +97,7 @@ const AnimatedScrollSection = () => {
               <h3 className="text-2xl font-bold text-[#ff6b35]">Transform Your Body</h3>
               <p className="text-gray-300">
                 Our expert trainers will guide you through personalized workout routines 
-                designed to help you achieve your fitness goals. Whether you're looking to 
+                designed to help you achieve your fitness goals. Whether you&apos;re looking to 
                 build muscle, lose weight, or improve your overall health, we have the 
                 expertise and equipment to help you succeed.
               </p>
