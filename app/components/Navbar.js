@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6 overflow-hidden">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-[#ff4500]">FitForge</span>
+            <span><Image src="/logo.png" alt="Logo" width={70} height={70} /></span><span className="text-2xl font-bold text-[#ff4500]">Figure<span className="text-white text-3xl">&</span>Fezeek</span>
           </Link>
 
           {/* Mobile menu button */}
@@ -55,11 +55,11 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            <Link href="/" className="text-white hover:text-[#ff6b35] transition-colors">Home</Link>
-            <Link href="#about" className="text-white hover:text-[#ff6b35] transition-colors">About</Link>
-            <Link href="#pricing" className="text-white hover:text-[#ff6b35] transition-colors">Pricing</Link>
-            <Link href="#trial" className="text-white hover:text-[#ff6b35] transition-colors">Free Trial</Link>
-            <Link href="#contact" className="text-white hover:text-[#ff6b35] transition-colors">Contact</Link>
+            <Link href="/" className="text-white hover:text-[#ff6b35] font-semibold transition-colors">Home</Link>
+            <Link href="#about" className="text-white hover:text-[#ff6b35] font-semibold transition-colors">About</Link>
+            <Link href="#pricing" className="text-white hover:text-[#ff6b35] font-semibold transition-colors">Pricing</Link>
+            <Link href="#trial" className="text-white hover:text-[#ff6b35] font-semibold transition-colors">Free Trial</Link>
+            {/* <Link href="#contact" className="text-white hover:text-[#ff6b35] font-semibold transition-colors">Contact</Link> */}
           </div>
         </div>
 

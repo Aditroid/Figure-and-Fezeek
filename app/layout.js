@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "FitForge Gym | Your Fitness Journey Starts Here",
+  title: "Figure&Fezeek Gym | Your Fitness Journey Starts Here",
   description: "Premium fitness center offering personalized training programs, state-of-the-art equipment, and flexible membership options.",
   viewport: "width=device-width, initial-scale=1",
 };

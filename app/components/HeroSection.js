@@ -1,7 +1,6 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 
 const HeroSection = () => {
@@ -12,45 +11,51 @@ const HeroSection = () => {
     '/hero3.jpg',
   ];
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-        }
-      }
-    ]
-  };
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto-change image every 3.5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <section className="relative h-screen overflow-hidden">
       <div className="absolute inset-0 z-0 w-full">
-        <Slider {...settings} className="h-full">
-          {images.map((image, index) => (
-            <div key={index} className="h-screen relative">
-              <div className="absolute inset-0 bg-black/50 z-10"></div>
-              <div className="relative h-full">
-                <Image
-                  src={image}
-                  alt={`Gym hero image ${index + 1}`}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority={index === 0}
-                  quality={90}
-                />
-              </div>
+        {images.map((image, index) => (
+          <div 
+            key={index} 
+            className={`h-screen relative transition-opacity duration-1000 ${currentImageIndex === index ? 'opacity-100' : 'opacity-0'}`}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          >
+            <div className="absolute inset-0 bg-black/50 z-10"></div>
+            <div className="relative h-full">
+              <Image
+                src={image}
+                alt={`Gym hero image ${index + 1}`}
+                fill
+                style={{ objectFit: 'cover' }}
+                priority={index === 0}
+                quality={90}
+              />
             </div>
+          </div>
+        ))}
+        
+        {/* Image indicators/dots */}
+        <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all ${currentImageIndex === index ? 'bg-[#ff4500] w-6' : 'bg-white/60 hover:bg-white'}`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
           ))}
-        </Slider>
+        </div>
       </div>
       
       <div className="container mx-auto px-4 h-full flex items-center relative z-20">

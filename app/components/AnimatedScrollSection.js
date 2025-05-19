@@ -16,31 +16,18 @@ const AnimatedScrollSection = () => {
   ];
 
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Current image index based on scroll position
+  
+  // Current image index for auto-changing images
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  // Update image index based on scroll progress
+  // Auto-change image every 4 seconds
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((value) => {
-      // Make the images change more quickly by multiplying the progress value
-      // This will cause all images to cycle through in the first 40% of the scroll
-      const acceleratedValue = Math.min(value * 2.5, 1);
-      
-      // Map scroll progress to image index
-      const index = Math.min(
-        Math.floor(acceleratedValue * images.length),
-        images.length - 1
-      );
-      setCurrentImageIndex(index);
-    });
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000);
     
-    return () => unsubscribe();
-  }, [scrollYProgress, images.length]);
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   // Animation for the text sections
   const [ref, inView] = useInView({
@@ -95,7 +82,7 @@ const AnimatedScrollSection = () => {
               className="space-y-6"
             >
               <h3 className="text-2xl font-bold text-[#ff6b35]">Transform Your Body</h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-lg">
                 Our expert trainers will guide you through personalized workout routines 
                 designed to help you achieve your fitness goals. Whether you are looking to 
                 build muscle, lose weight, or improve your overall health, we have the 
@@ -103,7 +90,7 @@ const AnimatedScrollSection = () => {
               </p>
               
               <h3 className="text-2xl font-bold text-[#ff6b35] pt-4">State-of-the-Art Facilities</h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-lg">
                 Our gym is equipped with the latest fitness technology and equipment to 
                 ensure you get the most effective workout possible. From cardio machines 
                 to free weights, we have everything you need to push your limits and 
@@ -111,7 +98,7 @@ const AnimatedScrollSection = () => {
               </p>
               
               <h3 className="text-2xl font-bold text-[#ff6b35] pt-4">Supportive Community</h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-lg">
                 Join a community of like-minded individuals who are committed to their 
                 fitness journey. Our members support and motivate each other, creating 
                 an environment where everyone can thrive and reach their full potential.

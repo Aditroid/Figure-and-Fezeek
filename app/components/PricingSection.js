@@ -10,7 +10,7 @@ const PricingSection = () => {
   const plans = {
     monthly: {
       title: "Monthly",
-      price: "₹2,499",
+      price: "₹1,200",
       period: "/ month",
       // features: [
       //   "Full gym access",
@@ -23,7 +23,7 @@ const PricingSection = () => {
     },
     quarterly: {
       title: "Quarterly",
-      price: "₹6,999",
+      price: "₹3,000",
       period: "/ 3 months",
       // features: [
       //   "Full gym access",
@@ -36,7 +36,7 @@ const PricingSection = () => {
     },
     halfYearly: {
       title: "Half Yearly",
-      price: "₹12,999",
+      price: "₹6,000",
       period: "/ 6 months",
       // features: [
       //   "Full gym access",
@@ -50,7 +50,7 @@ const PricingSection = () => {
     },
     annually: {
       title: "Annually",
-      price: "₹22,999",
+      price: "₹12,000",
       period: "/ year",
       // features: [
       //   "Full gym access",
@@ -168,7 +168,7 @@ const PricingSection = () => {
                 >
                   <div className={`pricing-card h-full flex flex-col ${plan.popular ? 'border-[#ff4500] border-2' : ''}`}>
                     {plan.popular && (
-                      <div className="bg-[#ff4500] text-white text-center py-1 px-4 rounded-t-lg font-semibold">
+                      <div className="bg-[#ff4500] text-white text-center py-1 px-4 rounded-lg font-semibold">
                         Most Popular
                       </div>
                     )}
