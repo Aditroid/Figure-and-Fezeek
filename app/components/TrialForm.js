@@ -40,8 +40,9 @@ const TrialForm = () => {
       // Add a hidden field for the gym owner to identify the form
       formDataObj.set('form-name', 'free-trial-request');
       
-      // Replace 'your-email@example.com' with your actual email
-      const actionUrl = 'https://formsubmit.co/@gmail.com';
+      // Send to multiple email addresses (comma-separated)
+      // Replace these with your actual email addresses
+      const actionUrl = 'https://formsubmit.co/bora.aditya786@gmail.com,percyjackson.waterboy@gmail.com';
       
       // Send the form data to FormSubmit
       const response = await fetch(actionUrl, {
