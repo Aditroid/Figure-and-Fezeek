@@ -28,55 +28,58 @@ const TrialForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Get form element
-      const form = e.target;
+      // For production, we'll use the direct form submission approach which is more reliable
+      // Replace these with your actual email addresses (comma-separated)
+      const emails = "bora.aditya786@gmail.com,percyjackson.waterboy@gmail.com";
       
-      // Create a FormData object to send the form data
-      const formDataObj = new FormData(form);
+      // Create a hidden form and submit it directly
+      const formElement = document.createElement('form');
+      formElement.method = 'POST';
+      formElement.action = `https://formsubmit.co/${emails}`;
+      formElement.style.display = 'none';
       
-      // Add the time slot to the form data
-      formDataObj.set('timeSlot', formData.timeSlot);
+      // Add form data
+      const addField = (name, value) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        formElement.appendChild(input);
+      };
       
-      // Add a hidden field for the gym owner to identify the form
-      formDataObj.set('form-name', 'free-trial-request');
+      // Add all the form fields
+      addField('name', formData.name);
+      addField('phone', formData.phone);
+      addField('email', formData.email);
+      addField('timeSlot', formData.timeSlot);
+      addField('_subject', 'New Free Trial Request');
       
-      // Send to multiple email addresses (comma-separated)
-      // Replace these with your actual email addresses
-      const actionUrl = 'https://formsubmit.co/bora.aditya786@gmail.com,percyjackson.waterboy@gmail.com';
+      // Add FormSubmit specific fields
+      addField('_captcha', 'false'); // Disable captcha
+      addField('_template', 'table'); // Use table template for better readability
       
-      // Send the form data to FormSubmit
-      const response = await fetch(actionUrl, {
-        method: 'POST',
-        body: formDataObj,
-        headers: {
-          'Accept': 'application/json',
-        },
+      // Add redirect back to the site after submission
+      const currentUrl = window.location.href;
+      addField('_next', currentUrl);
+      
+      // Append form to body, submit it, and remove it
+      document.body.appendChild(formElement);
+      
+      // Show success message before redirect
+      toast.success('Submitting your request...');
+      
+      // Small delay to allow toast to show
+      setTimeout(() => {
+        formElement.submit();
+      }, 1000);
+      
+      // Reset form data (though user will be redirected)
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        timeSlot: '6am-10am',
       });
-      
-      if (response.ok) {
-        // Show success message
-        toast.success('Free trial request submitted successfully!');
-        
-        // Reset form
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          timeSlot: '6am-10am',
-        });
-        
-        // Optional: Send WhatsApp notification
-        // This requires setting up a WhatsApp Business API
-        // For now, we'll just prepare the message format
-        const whatsappNumber = "1234567890"; // Replace with your actual WhatsApp number
-        const message = `New Free Trial Request:\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nTime Slot: ${formData.timeSlot}`;
-        
-        // In a production environment, you would use a server-side function to send this message
-        // For testing, you could manually open WhatsApp with this message
-        // window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
-      } else {
-        throw new Error('Form submission failed');
-      }
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
       console.error('Error submitting form:', error);
