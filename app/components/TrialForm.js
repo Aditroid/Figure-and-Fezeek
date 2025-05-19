@@ -29,14 +29,17 @@ const TrialForm = () => {
     
     try {
       // For production, we'll use the direct form submission approach which is more reliable
-      // Replace these with your actual email addresses (comma-separated)
-      const emails = "bora.aditya786@gmail.com,percyjackson.waterboy@gmail.com";
+      // FormSubmit requires a single primary email for the action URL
+      const primaryEmail = "bora.aditya786@gmail.com";
       
       // Create a hidden form and submit it directly
       const formElement = document.createElement('form');
       formElement.method = 'POST';
-      formElement.action = `https://formsubmit.co/${emails}`;
+      formElement.action = `https://formsubmit.co/${primaryEmail}`;
       formElement.style.display = 'none';
+      
+      // Add secondary email as _cc field
+      const secondaryEmail = "percyjackson.waterboy@gmail.com";
       
       // Add form data
       const addField = (name, value) => {
@@ -53,6 +56,9 @@ const TrialForm = () => {
       addField('email', formData.email);
       addField('timeSlot', formData.timeSlot);
       addField('_subject', 'New Free Trial Request');
+      
+      // Add CC for the secondary email
+      addField('_cc', secondaryEmail);
       
       // Add FormSubmit specific fields
       addField('_captcha', 'false'); // Disable captcha
