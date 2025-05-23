@@ -12,7 +12,7 @@ const AnimatedScrollSection = () => {
     '/pose3.jpg',
     '/pose4.jpg',
     '/pose5.jpg',
-    '/pose6.jpg',
+    // '/pose6.jpg',
   ];
 
   const containerRef = useRef(null);
@@ -83,7 +83,7 @@ const AnimatedScrollSection = () => {
             >
               <h3 className="text-2xl font-bold text-[#ff6b35]">Transform Your Body</h3>
               <p className="text-gray-300 text-lg">
-                Our expert trainers will guide you through personalized workout routines 
+                We will guide you through personalized workout routines 
                 designed to help you achieve your fitness goals. Whether you are looking to 
                 build muscle, lose weight, or improve your overall health, we have the 
                 expertise and equipment to help you succeed.
@@ -91,7 +91,7 @@ const AnimatedScrollSection = () => {
               
               <h3 className="text-2xl font-bold text-[#ff6b35] pt-4">State-of-the-Art Facilities</h3>
               <p className="text-gray-300 text-lg">
-                Our gym is equipped with the latest fitness technology and equipment to 
+                Our gym is equipped with fitness equipment to 
                 ensure you get the most effective workout possible. From cardio machines 
                 to free weights, we have everything you need to push your limits and 
                 achieve your personal best.
