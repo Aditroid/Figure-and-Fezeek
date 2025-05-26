@@ -36,7 +36,7 @@ const PricingSection = () => {
     },
     halfYearly: {
       title: "Half Yearly",
-      price: "₹6,000",
+      price: "₹5,500",
       period: "/ 6 months",
       // features: [
       //   "Full gym access",
@@ -50,7 +50,7 @@ const PricingSection = () => {
     },
     annually: {
       title: "Annually",
-      price: "₹12,000",
+      price: "₹10,000",
       period: "/ year",
       // features: [
       //   "Full gym access",
@@ -122,8 +122,11 @@ const PricingSection = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Membership <span className="text-[#ff4500]">Pricing</span></h2>
+          <p className="text-center text-gray-300 mb-5 max-w-2xl text-xl mx-auto">
+            Choose the plan that fits your <span className="text-[#ff4500]">fitness goals</span> and budget. All plans include access to our state-of-the-art <span className="text-[#ff4500]">facilities</span>.
+          </p>
           <p className="text-center text-gray-300 mb-12 max-w-2xl text-xl mx-auto">
-            Choose the membership plan that fits your fitness goals and budget. All plans include access to our state-of-the-art facilities.
+            Join us with a small registration fees of <span className="text-[#ff4500] text-2xl font-bold">₹300</span> and start your journey to a healthier you.
           </p>
         </motion.div>
 
@@ -174,7 +177,7 @@ const PricingSection = () => {
                     )}
                     <div className="p-4 flex-grow flex flex-col justify-center items-center text-center">
                       <div>
-                        <h3 className="text-xl font-bold mb-1">{plan.title}</h3>
+                        <h3 className="text-3xl font-bold mb-1">{plan.title}</h3>
                         <div className="mb-1">
                           <span className="text-4xl font-bold text-[#ff6b35]">{plan.price}</span>
                           <span className="text-gray-300 ml-2">{plan.period}</span>
